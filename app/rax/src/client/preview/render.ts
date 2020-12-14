@@ -12,7 +12,13 @@ export default function renderMain({
   name,
   showMain,
   showError,
-  // forceRender,
+}: // forceRender,
+{
+  storyFn: Function;
+  kind: string;
+  name: string;
+  showMain: () => any;
+  showError: (input: { title: string; description: string }) => void;
 }) {
   const Element = storyFn;
 
@@ -29,6 +35,7 @@ export default function renderMain({
 
   showMain();
 
+  // @ts-ignore
   render(createElement(Element), rootElement, {
     driver: DriverDOM,
   });
