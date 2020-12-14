@@ -1,4 +1,5 @@
 import { document } from 'global';
+// @ts-ignore
 import { unregister, tag2, mount } from 'riot';
 import compiler from 'riot-compiler';
 import { render } from './rendering';
@@ -23,18 +24,21 @@ beforeEach(() => {
 
 describe('render a riot element', () => {
   it('should not work with nothing', () => {
+    // @ts-ignore
     expect(render(null, context)).toBe(false);
 
     expect(rootElement.innerHTML).toEqual('');
   });
 
   it('can work with some text', () => {
+    // @ts-ignore
     expect(render({ tags: ['<div><p>some tests</p></div>'] }, context)).toBe(true);
 
     expect(rootElement.innerHTML).toEqual('<div><p>some tests</p></div>');
   });
 
   it('can work with raw code', () => {
+    // @ts-ignore
     expect(render("riot.tag2('root', '<div>raw code</div>', '', '', () => {})", context)).toBe(
       true
     );
@@ -43,6 +47,7 @@ describe('render a riot element', () => {
   });
 
   it('can work with compiled code', () => {
+    // @ts-ignore
     expect(render([{}], context)).toBe(true);
     // does only work in true mode, and not in jest mode
   });
@@ -58,6 +63,7 @@ describe('render a riot element', () => {
   it('works with a json consisting in a tagName and opts', () => {
     tag2('hello', '<p>Hello { opts.suffix }</p>', '', '', () => {});
 
+    // @ts-ignore
     expect(render({ tagName: 'hello', opts: { suffix: 'World' } }, context)).toBe(true);
 
     expect(rootElement.innerHTML).toEqual('<p>Hello World</p>');
@@ -76,6 +82,7 @@ describe('render a riot element', () => {
           ],
           template: '<Matriochka><div><Tag1>Content</Tag1></div></Matriochka>',
         },
+        // @ts-ignore
         context
       )
     ).toBe(true);
@@ -97,6 +104,7 @@ describe('render a riot element', () => {
           template:
             '<SimpleTest test={ "with a parameter" } value={"value is mapped to riotValue"}></SimpleTest>',
         },
+        // @ts-ignore
         context
       )
     ).toBe(true);
@@ -121,6 +129,7 @@ describe('render a riot element', () => {
             this.hacked = true;
           },
         },
+        // @ts-ignore
         context
       )
     ).toBe(true);
